@@ -1,0 +1,59 @@
+/* md-nav-bar {
+    position: relative;
+  }
+  md-nav-bar .md-nav-item {
+    margin-top: 3px !important;
+  }
+  
+  body {
+    padding: 50px;
+  }
+  
+  md-content {
+    width: 600px;
+    padding: 0;
+  }
+  
+  .demo-content {
+    padding: 150px 24px;
+  } */
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: 100;
+    font-style: normal;
+    font-size: larger;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+.icon{
+  font-size: 21vh;
+  border: solid 6px;
+  color: #00939f;
+  padding-left: 4vh;
+  padding-right: 4vh;
+  border-radius: 180px;
+  margin: 7vh;
+  text-shadow: 0 0 7px black;
+  box-shadow: 1px 3px 18px 2px #7d7d7d;
+}
+#slideText
+{
+  position: absolute;
+  margin-top: -50vh;
+  float: right;
+  color: white;
+  text-align: initial;
+  width: 50vh;
+  margin-right: 22vh;
+}
+
+#icons
+{
+  display: inline-flex;
+}

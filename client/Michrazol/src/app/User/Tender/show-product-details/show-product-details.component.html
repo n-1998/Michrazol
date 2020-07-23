@@ -1,0 +1,82 @@
+<body>
+  <div class="w3-container" style="position:relative">
+    <h1 class="w3-jumbo w3-text-grey w3-text-shadow">פרטי המוצר</h1>
+  </div>
+
+  <div class="w3-animate-zoom" style="padding:20px 50px;background-color: rgb(226, 228, 228); background-size:cover;">
+
+    <div class="w3-section w3-row-padding">
+
+      <div class="w3-twothird w3-padding-right">
+        <div class="w3-card-4">
+          <div class="w3-image" *ngIf="productImages[0]!=null">
+            <div class="w3-content w3-display-container" style="background-color: rgb(226, 228, 228);">
+              <img *ngFor="let item of productImages let i=index" src={{localhost}}{{item.ImgGuid}} hidden={{hidden[i]}}>
+            </div>
+            <img class="mySlides" *ngFor="let item of productImages" src={{localhost}}{{item.ImgGuid}} style="width:50%">
+            <div class="w3-center w3-section w3-large w3-text-white w3-display-bottomleft" style="width:100%">
+              <div class="w3-left w3-padding-left w3-hover-text-khaki" (click)="plusDivs(-1)">&#10094;</div>
+              <div class="w3-right w3-padding-right w3-hover-text-khaki" (click)="plusDivs(1)">&#10095;</div>
+              <span *ngFor="let item of numbersOfImages" class="w3-badge demo w3-border w3-transparent w3-hover-white {{className[item]}}"
+                (click)="currentDiv(item)"></span>
+            </div>
+            <div>
+
+            </div>
+          </div>
+          <div class="w3-image"  *ngIf="!productImages[0]==null">
+              <div class="w3-content w3-display-container" style="background-color: rgb(226, 228, 228);">
+       
+          <img class="productImage" src="../../../../assets/noImage.jpg"/>
+          </div>
+          </div>
+          <div class="w3-container">
+
+          </div>
+        </div>
+      </div>
+      <div class="w3-third w3-container w3-padding-left w3-center">
+        <div class="w3-card-4">
+          <div class="w3-container w3-white w3-title w3-xlarge w3-text-black">
+            <p>שם מוצר :{{productName}}</p>
+          </div>
+          <div class="w3-container">
+            <p class="w3-large"> עיר :{{city}}</p>
+          </div>
+          <div class="w3-container">
+            <span>תאור</span>
+          <p>{{productForSale.Description}}</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  var slideIndex = 1;
+  showDivs(slideIndex);
+
+  function plusDivs(n) {
+    showDivs(slideIndex += n);
+  }
+
+  function currentDiv(n) {
+    showDivs(slideIndex = n);
+  }
+
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+    if (n > x.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = x.length };
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" w3-white", "");
+    }
+    x[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " w3-white";
+  }
+</script>

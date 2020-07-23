@@ -1,0 +1,47 @@
+<h1 style="    margin-top: 23vh; text-align: right;
+margin-right: 10vh;">
+    המכרזים שלי
+</h1>
+<div class="row">
+<div class="col-10">
+<table class='table table-striped' *ngIf="TenderList[0]" dir="rtl">
+    <thead>
+        <tr>
+            <th>מוצר</th>
+            <th>תיאור</th>
+            <th>מחיר מקסימלי</th>
+            <th>התחלת המכרז</th>
+            <th>סיום המכרז</th>
+            <th>עיר</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of TenderList">
+            <div *ngFor="let p of products">
+                <td *ngIf="p.ProductId==item.ProductId">
+                    {{p.ProductName}}
+                </td>
+            </div>
+            <td>{{item.Description}}</td>
+            <td>{{item.MaxCost}}</td>
+            <td>{{item.StartDate|date:'dd/MM/yyyy'}}</td>
+            <td>{{item.EndDate|date:'dd/MM/yyyy'}}</td>
+
+            <div *ngFor="let c of cities">
+                <td *ngIf="c.CityId==item.City">
+                    {{c.CityName}}
+                </td>
+            </div>
+            <td>
+                <button title="ערוך " class="btn btn-info" (click)="editTender(item) ">ערוך</button>
+                <button title="מחק " class="btn btn-secondary" (click)="deleteTender(item.Id) ">מחק</button>
+                <button class="btn btn-info" (click)="chooseProductForTender(item.Id)">בחירת מוצרים</button>
+                <button class="btn" (click)="showManageTenderDetails(item.Id)">מידע על המכרז</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<h1 *ngIf="!TenderList[0]" style="text-align: right;
+margin-right: 10vh;">אין מכרזים בחשבונך.</h1>

@@ -1,0 +1,51 @@
+
+<form class="col s12" (ngSubmit)="saveChanges()">
+  
+    <div class="row">
+        <select name="category" #c (change)="onSelectCategory(c.value)" value="בחר קטגוריה">
+            <option [ngValue]="undefined" hidden selected>{{defaultCategory}}</option>
+            <option *ngFor="let item of categoryList" [ngValue]="item.CategoryId" value={{item.CategoryId}}>{{item.CategoryName}}</option>
+        </select>
+        <label for="category">קטגוריה</label>
+    </div>
+    <div class="row">
+        <select name="product" [(ngModel)]="EditTender.ProductId" required="required" #product="ngModel">
+            <option [ngValue]="undefined" hidden selected>בחר קטגוריה</option>
+            <option *ngFor="let item of productList" value={{item.ProductId}} >{{item.ProductName}}</option>
+        </select>
+        <label for="product">מוצר</label>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s6">
+            <input type="text" [(ngModel)]="EditTender.Description" name="FirstName">
+            <label for="FirstName">תיאור</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <select name="city" [(ngModel)]="EditTender.City" required="required" #city="ngModel">
+            <option [ngValue]="undefined" hidden selected>בחר עיר</option>
+            <option *ngFor="let item of citiesList" value={{item.CityId}} >{{item.CityName}}</option>
+        </select>
+        <label for="city">עיר</label>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">
+            <input type="date" [ngModel]="EditTender.EndDate| date:'yyyy-MM-dd'" (ngModelChange)="EditTender.EndDate = $event" name="EndDate">
+            <!-- <input [ngModel]="EditTender.EndDate | date:'yyyy-MM-dd'"  type="date" name="jkl"/> -->
+            
+            <label for="EndDate">תאריך סיום המכרז</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s6">
+            <input type="number" [(ngModel)]="EditTender.MaxCost" name="MaxCost">
+            <label for="MaxCost">מחיר מקסימלי</label>
+        </div>
+      </div>
+    <button class="btn waves-effect waves-light teal" type="submit" name="action" (click)="saveChanges()">שמור</button>
+
+    <input type="button" value="ביטול" class="btn btn-default" (click)="cancel()"/>
+</form>

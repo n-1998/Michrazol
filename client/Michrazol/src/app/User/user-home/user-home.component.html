@@ -1,0 +1,44 @@
+<!-- <div class="navbar navbar default">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li routerLinkActive="active"><a routerLink="addProductForSale"><h2> שמירת מוצר למכירה</h2></a></li>
+      <li routerLinkActive="active"><a routerLink="openTender"><h2>פתיחת מכרז לקניית מוצר</h2></a></li>
+      <li routerLinkActive="active"><a routerLink="userSavedProductForSale"><h2>מוצרים שמורים למכירה</h2></a></li>
+    </ul>
+  </div>
+</div> -->
+
+<div class="nav">
+    <div class="nav-header">
+    </div>
+    <div class="nav-btn">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+    <!-- <input type="checkbox" id="nav-check">
+    <div class="nav-links">
+      <a routerLink="addProductForSale">מכירת מוצר</a>
+      <a routerLink="openTender">קנית מוצר</a>
+      <a routerLink="userSavedProductForSale">המוצרים שלי למכירה</a>
+      <a routerLink="savedTenders">המכרזים שלי</a>
+      <!-- <a href="https://codepen.io/jo_Geek/" target="_blank">Codepen</a>
+      <a href="https://jsfiddle.net/user/jo_Geek/" target="_blank">JsFiddle</a> -->
+      <!-- <span dir="ltr" style="color: #0af0dd; text-shadow: 0 0 11px #fff2f2;"> ברוכים הבאים {{userName}}</span>
+    </div>
+  </div>-->
+
+  <div class="sidenav w3-animate-top" >
+
+      <div class="nav"><div class="icon"><i class="material-icons">add_shopping_cart</i></div><div class="description"><a routerLink="addProductForSale">הוספת מוצר למכירה</a></div></div>
+      <div class="nav"><div class="icon"><i class="material-icons">playlist_add</i></div><div class="description"><a routerLink="openTender">הוספת מודעת דרושים</a></div></div>
+      <div class="nav"><div class="icon"><i class="material-icons">local_grocery_store</i></div><div class="description"><a routerLink="userSavedProductForSale">המוצרים שלי למכירה</a></div></div>
+      <div class="nav"><div class="icon"><i class="material-icons">list</i></div><div class="description"><a routerLink="savedTenders">הדרושים שלי</a></div></div>
+      <div class="nav"><div class="icon"><i class="material-icons">person</i></div><div class="description"><a routerLink="UpdatePersonalDetails">הגדרת פרטים אישיים</a></div></div>
+      <!-- <div class="nav"><div class="icon fa fa-user"></div><div class="description">TELOS 2014 Toppers</div></div>
+      <div class="nav"><div class="icon fa fa-phone"></div><div class="description">Contact Us</div></div> -->
+    </div>
+    
+    <router-outlet></router-outlet>

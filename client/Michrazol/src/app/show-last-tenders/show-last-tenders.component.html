@@ -1,0 +1,36 @@
+<div id="lastTitle" class="w3-animate-left">
+  <h1>מכרזים אחרונים</h1>
+</div>
+<div id="lastTenderWrapper">
+  <div *ngFor="let last of lastTenders| slice:0:3; let i=index" class="lastTenderCard">
+      <div *ngFor="let p of productTypes">
+          <p *ngIf="p.ProductId==last.ProductId" class="productName">
+              {{p.ProductName}}
+          </p>
+      </div>
+    <div class="images">
+      <slideshow [height]="height" [minHeight]="'400px'" [autoPlay]="false" [showArrows]="false" [imageUrls]="last.images"
+        [lazyLoad]="imageSources?.length > 1" [autoPlayInterval]="10000" [autoPlayWaitForLazyLoad]="true" [hideOnNoSlides]="true">
+      </slideshow>
+    </div>
+    <div class="productButtom">
+    <p style="    text-align: left;
+    margin-top: -10vh;
+    margin-left: -2vh;
+    font-size: 3vh;"> {{last.EndDate|date:'dd/MM/yyyy'}}</p>
+    <p style="text-align: center; font-size: -webkit-xxx-large; padding: 7vh;"> {{last.price}} ש"ח</p> 
+    <p style="text-align: center;  margin-top: 8vh;">{{last.Description}}</p>
+    <p *ngIf="last.IsNew==true" style="text-align: center; font-size: 3vh;">-מוצר חדש-</p>
+    <p *ngIf="last.IsNew==false" style="text-align: center; font-size: 3vh;">-יד שניה-</p>
+
+  </div>
+  </div>
+</div>
+
+
+<!-- public ProductId: number = 0,
+public IsNew:boolean=false,
+public Description: string = "",
+public EndDate:Date=null,
+public images:string[]=[],
+public price:number=0 -->

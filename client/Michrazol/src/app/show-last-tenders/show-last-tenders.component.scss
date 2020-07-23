@@ -1,0 +1,48 @@
+.lastTenderCard{
+    width:30vw;
+    height: 30vh;
+    margin:3vh;
+}
+#lastTenderWrapper{
+    display: inline-flex;
+}
+#lastTitle{
+    background-image: antiquewhite(#00939f, white);
+    background-image: linear-gradient(to right, #ffffff,#00939f, #00939f,#ffffff);
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 0 10px 0px black;
+    line-height: 11vh;
+    text-shadow: 3px 0px 6px #303030;
+    padding: 2vh;
+}
+.productName{
+    margin: 0;
+    color: white;
+    font-size: 4vh;
+    background-color: #919191;;
+    padding: 1vh;
+    text-align: right;
+    border-bottom: solid;
+    border-bottom-color: #ffffff;
+    text-shadow: 0 0 1px black;
+}
+.images{
+    z-index: -1;
+    // opacity:0.4;
+}
+.productButtom
+{
+    position: absolute;
+    margin-top: -50vh;
+    float: right;
+    color: #00939f;
+    text-align: initial;
+    width: 50vh;
+    margin-right: 9vh;
+    font-size: 5vh;
+    text-shadow: 1px 1px 4px black;
+}
+.productCard{
+    width: 30%;
+}

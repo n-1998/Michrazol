@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MichrazolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="AreaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CitiesAreas">
+    <Key>
+      <PropertyRef Name="AreaId" />
+    </Key>
+    <Property Name="AreaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaName" Type="nchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="ImgName" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="ImgGuid" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PasswordResetRequest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductForSale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nchar" MaxLength="1000" />
+    <Property Name="City" Type="int" />
+    <Property Name="InitialBid" Type="int" Nullable="false" />
+    <Property Name="InterestedInMessages" Type="bit" />
+    <Property Name="LastModifiedDate" Type="date" Nullable="false" />
+    <Property Name="IsNew" Type="bit" Nullable="false" />
+    <Property Name="SelledToTenderId" Type="int" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nchar" MaxLength="30" />
+    <Property Name="CategoryId" Type="int" />
+  </EntityType>
+  <EntityType Name="SuggestedPrices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenderId" Type="int" Nullable="false" />
+    <Property Name="UserProductId" Type="int" Nullable="false" />
+    <Property Name="SuggestedPrice" Type="int" />
+    <Property Name="LastModifiedDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="MaxCost" Type="money" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="City" Type="int" />
+    <Property Name="Description" Type="nchar" MaxLength="500" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="date" Nullable="false" />
+    <Property Name="IsNew" Type="bit" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tz" Type="nchar" MaxLength="10" />
+    <Property Name="FirstName" Type="nchar" MaxLength="20" />
+    <Property Name="LastName" Type="nchar" MaxLength="20" />
+    <Property Name="Mail" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Tel" Type="nchar" MaxLength="10" />
+    <Property Name="Password" Type="nchar" MaxLength="8" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Cities_CitiesAreas">
+    <End Role="CitiesAreas" Type="Self.CitiesAreas" Multiplicity="1" />
+    <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CitiesAreas">
+        <PropertyRef Name="AreaId" />
+      </Principal>
+      <Dependent Role="Cities">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Images_ProductForSale">
+    <End Role="ProductForSale" Type="Self.ProductForSale" Multiplicity="1" />
+    <End Role="Images" Type="Self.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductForSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductForSale_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+    <End Role="ProductForSale" Type="Self.ProductForSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="ProductForSale">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductForSale_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductForSale" Type="Self.ProductForSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductForSale">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductForSale_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ProductForSale" Type="Self.ProductForSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ProductForSale">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SuggestedPrices_ProductForSale">
+    <End Role="ProductForSale" Type="Self.ProductForSale" Multiplicity="1" />
+    <End Role="SuggestedPrices" Type="Self.SuggestedPrices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductForSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SuggestedPrices">
+        <PropertyRef Name="UserProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SuggestedPrices_Tender">
+    <End Role="Tender" Type="Self.Tender" Multiplicity="1" />
+    <End Role="SuggestedPrices" Type="Self.SuggestedPrices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SuggestedPrices">
+        <PropertyRef Name="TenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+    <End Role="Tender" Type="Self.Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Tender" Type="Self.Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Tender" Type="Self.Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MichrazolModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CitiesAreas" EntityType="Self.CitiesAreas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PasswordResetRequest" EntityType="Self.PasswordResetRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductForSale" EntityType="Self.ProductForSale" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SuggestedPrices" EntityType="Self.SuggestedPrices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tender" EntityType="Self.Tender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cities_CitiesAreas" Association="Self.FK_Cities_CitiesAreas">
+      <End Role="CitiesAreas" EntitySet="CitiesAreas" />
+      <End Role="Cities" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Images_ProductForSale" Association="Self.FK_Images_ProductForSale">
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductForSale_Cities" Association="Self.FK_ProductForSale_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductForSale_Products" Association="Self.FK_ProductForSale_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductForSale_Users" Association="Self.FK_ProductForSale_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SuggestedPrices_ProductForSale" Association="Self.FK_SuggestedPrices_ProductForSale">
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+      <End Role="SuggestedPrices" EntitySet="SuggestedPrices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SuggestedPrices_Tender" Association="Self.FK_SuggestedPrices_Tender">
+      <End Role="Tender" EntitySet="Tender" />
+      <End Role="SuggestedPrices" EntitySet="SuggestedPrices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Cities" Association="Self.FK_Tender_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Tender" EntitySet="Tender" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Products" Association="Self.FK_Tender_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Tender" EntitySet="Tender" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Users" Association="Self.FK_Tender_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Tender" EntitySet="Tender" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

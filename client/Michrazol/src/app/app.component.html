@@ -1,0 +1,89 @@
+<!-- 
+
+<mdb-navbar class="myNavbar" [class.fixed]="fixed" SideClass="w3-animate-right navbar fixed-top navbar-expand-lg darken-1 scrolling-navbar" [containerInside]="true">
+         -->
+<!-- <nav class="navbar navbar-default fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active waves-light" mdbRippleRadius>
+                    <a class="nav-link" routerLink="">דף הבית<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link" routerLink="app/ShowAllProductsForSale">מוצרים למכירה</a>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link">דרושים</a>
+                </li>
+            
+                <li class="nav-item waves-light" mdbRippleRadius *ngIf="user.UserId!=0">
+                    <a class="nav-link" routerLink="app/userHome">לאיזור האישי</a>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <label class="nav-link">|</label>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius style="display: inherit;">
+                  <i class="material-icons nav-link">person</i>
+                   <label class="nav-link">שלום {{user.FirstName}} </label>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius *ngIf="user.UserId!=0">
+                    <a class="nav-link" (click)="logOut()">התנתק</a>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius *ngIf="user.UserId==0" >
+                    <a class="nav-link" routerLink="app/login">כניסה</a>
+                </li>
+            
+            </ul>
+        </links>
+        <logo>
+            <a class="logo navbar-brand" href="#">
+                <img id="logo" src="../../assets/לוגו קטן.png" />
+            </a>
+        </logo>
+        </div>
+        </div>
+        </nav> -->
+
+<header class="navbar fixed-top myNavbar {{navWhite}}">
+    <nav class="navbar-navigation">
+        <div href="#">
+            <img id="logo" src="../assets/smallLogo.png" />
+        </div>
+        <a class="link {{activeLink}}" (click)="backWhite()" routerLink="">דף הבית</a>
+        <a class="link" (click)="removeActive()" routerLink="app/ShowAllProductsForSale">מוצרים למכירה</a>
+        <a class="link" (click)="removeActive()" routerLink="app/ShowAllTenders">דרושים</a>
+        <a class="link" (click)="removeActive()" *ngIf="user.UserId!=0" routerLink="app/userHome/UserHomeDescpriction">לאיזור האישי</a>
+        <label class="link">|</label>
+        <i class="material-icons" style="margin-left: 1vh; margin-right: 2vh; margin-top: 1vh;">person</i>
+        <label class="link">שלום {{user.FirstName}} </label>
+        <a class="link" (click)="removeActive()" *ngIf="user.UserId!=0" (click)="logOut()">התנתק</a>
+        <a class="link" (click)="removeActive()" *ngIf="user.UserId==0" routerLink="app/login">כניסה</a>
+    </nav>
+</header>
+
+<!-- </mdb-navbar> -->
+<!-- <nav class="navbar navbar-default fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">Brand</a>
+            </div>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Messages</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
+<router-outlet></router-outlet>

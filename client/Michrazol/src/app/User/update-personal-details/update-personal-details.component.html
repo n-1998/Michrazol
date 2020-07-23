@@ -1,0 +1,73 @@
+<!-- public UserId: number = 0,
+public Tz: string = "",
+public FirstName: string = "",
+public LastName: string = "",
+public Mail: string = "",
+public Tel: string = "",
+public Password: string = "" -->
+<div id="wrapper">
+    <div id="imageWrapper">
+        <img id="img" src="../../../assets/personalDetails.gif" />
+    </div>
+    <div id="divForm">
+        <h2 id="formTitle">עדכון פרטים אישיים</h2>
+        <form (ngSubmit)="saveDetails()">
+            <div class="form__row">
+                <div class="input">
+                    <div class="input__container">
+                        <input class="input__field" id="FirstName" required placeholder="FirstName" type="text" [(ngModel)]="user.FirstName"
+                            name="FirstName" />
+                        <label class="input__label" for="FirstName">שם פרטי</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form__row">
+                <div class="input">
+                    <div class="input__container">
+                        <input class="input__field" id="LastName" required placeholder="LastName" type="text" [(ngModel)]="user.LastName"
+                            name="LastName" />
+                        <label class="input__label" for="LastName">שם משפחה</label>
+                    </div>
+                </div>
+            </div>
+             <div class="form__row">
+                <div class="input">
+                    <div class="input__container">
+                        <input class="input__field"  minlength="9" maxlength="9"  id="Tz" required placeholder="תעודת זהות" type="text" [(ngModel)]="user.Tz"
+                            name="Tz" />
+                        <label class="input__label" for="Tz">תעודת זהות</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form__row">
+                <div class="input">
+                    <div class="input__container">
+                        <input class="input__field"  minlength="9" maxlength="10"  id="Tel" required placeholder="Tel" type="text" [(ngModel)]="user.Tel"
+                            name="Tel" />
+                        <label class="input__label" for="Tel">טלפון</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form__row">
+                <div class="input">
+                    <div class="input__container">
+                        <input class="input__field" id="Mail" required placeholder="Mail" type="email" [(ngModel)]="user.Mail"
+                            name="email" />
+                        <label class="input__label" for="Mail">מייל</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form__row">
+                <div class="input">
+                    <div class="input__container">
+                        <input class="input__field" id="Password" required placeholder="Password" type="password" [(ngModel)]="user.Password" name="Password" />
+                        <label class="input__label" for="Password">סיסמה</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form__row">
+                <button type="submit" class="btn btnSave" mdbRippleRadius>שמירה</button>
+            </div>
+        </form>
+    </div>
+</div>

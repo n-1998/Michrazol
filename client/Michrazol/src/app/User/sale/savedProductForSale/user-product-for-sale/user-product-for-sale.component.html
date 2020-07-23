@@ -1,0 +1,39 @@
+<div class="w3-container city w3-animate-top" style="text-align: right;    margin-right: 12vh;">
+<h1 style="    margin-top: 23vh;">
+    המוצרים שלי למכירה
+</h1>
+<div class="row" *ngIf="!noProductForSale">
+<div>
+<table class='table table-striped' *ngIf="productForSlaeList" >
+    <thead>
+        <tr>
+            <th>מוצר</th>
+            <th>תיאור</th>
+            <th>עיר</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of productForSlaeList" (click)="viewProductDetails(item)">
+            <div *ngFor="let p of products">
+                <td *ngIf="p.ProductId==item.ProductId">
+                    {{p.ProductName}}
+                </td>
+            </div>
+            <td>{{item.Description}}</td>
+
+            <div *ngFor="let c of cities">
+                <td *ngIf="c.CityId==item.City">
+                    {{c.CityName}}
+                </td>
+            </div>
+            <td>
+                <!-- <button title="ערוך " class="btn btn-info"  ">ערוך</button> -->
+                <button title="מחק " class="btn btn-secondary" (click)="deleteProduct(item.Id) ">מחק</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+<h1 *ngIf="noProductForSale">אין מוצרים למכירה בחשבונך</h1>

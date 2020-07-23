@@ -1,0 +1,101 @@
+
+<body id="wrapper">
+  <div class="w3-container" style="position:relative">
+    <a (click)="editProduct()" class="w3-btn-floating-large w3-right w3-white" style="position:absolute;top:126px;right:42px;">
+      <img src="../../../../../assets/signing-the-contract.png" style=" height: 4vh;
+      margin-top: -10px;
+      margin-left: 1vh;"/>
+    </a>
+    <h1 class="w3-jumbo w3-text-grey w3-text-shadow" style="float: right;" >פרטי המוצר</h1>
+  </div>
+
+  <div class="w3-animate-zoom" style="padding:20px 50px;background-color: rgb(226, 228, 228); background-size:cover;">
+
+    <div class="w3-section w3-row-padding">
+
+      <div class="w3-twothird w3-padding-right">
+        <div class="w3-card-4">
+          <div class="w3-image">
+            <div class="w3-content w3-display-container" style="background-color: rgb(226, 228, 228);">
+              <img *ngFor="let item of productImages let i=index"  src={{localhost}}{{item.ImgGuid}}  hidden={{hidden[i]}}>
+            </div>
+            <img class="mySlides" *ngFor="let item of productImages" src={{localhost}}{{item.ImgGuid}} style="width:50%">            
+              <div class="w3-center w3-section w3-large w3-text-white w3-display-bottomleft" style="width:100%">
+                  <div class="w3-left w3-padding-left w3-hover-text-khaki" (click)="plusDivs(-1)">&#10094;</div>
+                  <div class="w3-right w3-padding-right w3-hover-text-khaki" (click)="plusDivs(1)">&#10095;</div>
+                  <span *ngFor="let item of numbersOfImages" class="w3-badge demo w3-border w3-transparent w3-hover-white {{className[item]}}" (click)="currentDiv(item)"></span>
+              </div>
+              <div> 
+              
+    </div>
+          </div>
+          <div class="w3-container">
+            <div class="w3-title w3-xlarge w3-text-black">תאור</div>
+            <p>{{productForSale.Description}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-third w3-container w3-padding-left w3-center">
+        <div class="w3-card-4"> 
+           <div class="w3-container w3-white w3-title w3-xlarge w3-text-black">
+            <p>שם מוצר  :{{productName}}</p>
+          </div>
+          <div class="w3-container">
+            <!-- <p class="w3-jumbo">✉</p>
+              <p class="w3-large">+ 1 334</p> -->
+            <p class="w3-large">קטגורית מוצר :{{categoryName}} </p>
+            <p class="w3-large"> עיר :{{city}}</p>
+            <p class="w3-large">מחיר התחלתי :{{productForSale.InitialBid}} </p>
+          </div>
+        
+        </div>
+        <div class="w3-card-4 w3-section" (click)="goToSuggestPrice()">
+          <div class="w3-container w3-white">
+            <p class="w3-xxlarge">הצעת מחיר</p>
+          </div>
+          <div class="w3-container">
+            <p>לחץ כאן על כדי להציע הצעות מחיר למכרזים שאתה משתתף בהם</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+<!-- <footer class="w3-container">
+  <p>Powered by 
+  <a href="default.html" target="_blank">W3.CSS</a></p>
+</footer>
+
+</body> -->
+
+<!-- Mirrored from www.w3schools.com/w3css/tryit.asp?filename=tryw3css_examples_blog&stacked=h by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 May 2016 18:22:59 GMT -->
+
+<script>
+  var slideIndex = 1;
+  showDivs(slideIndex);
+
+  function plusDivs(n) {
+    showDivs(slideIndex += n);
+  }
+
+  function currentDiv(n) {
+    showDivs(slideIndex = n);
+  }
+
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+    if (n > x.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = x.length };
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" w3-white", "");
+    }
+    x[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " w3-white";
+  }
+</script>

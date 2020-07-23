@@ -1,0 +1,161 @@
+<!-- <h1>
+    מודעת דרושים חדשה
+</h1>
+<form class="col s12" (ngSubmit)="addNewTender()">
+    <div class="row">
+        <label for="category">קטגורית מוצר</label>
+        <p-dropdown [options]="categoryList" name="category" #c (onChange)="onSelectCategory(c.value)" [ngValue]="CategoryId" [filter]="true"
+            optionLabel="CategoryName"></p-dropdown>
+    </div>
+    <div class="row" ngHide="true">
+        <label for="product">מוצר</label>
+        <p-dropdown [options]="productList" name="product" [(ngModel)]="selectedProduct" [ngValue]="ProductId" [disabled]="!isDisabledProductList"
+            [filter]="true" optionLabel="ProductName"></p-dropdown>
+    </div>
+    <div class="row">
+        <label for="areas">אזור</label>
+        <p-dropdown [options]="AreasList" name="areas" #a (onChange)="onSelectArea(a.value)" [ngValue]="AreaId" [filter]="true" optionLabel="AreaName"></p-dropdown>
+    </div>
+    <div class="row">
+        <label for="city">עיר</label>
+        <p-dropdown [options]="citiesList" name="city" #city [(ngModel)]="selectedCity" [ngValue]="CityId" [disabled]="!isDisabledcityList"
+            [filter]="true" optionLabel="CityName"></p-dropdown>
+    </div>
+    <div class="row">
+        <label for="FirstName">תיאור</label>
+        <div class="input-field col s6">
+            <textarea style="height: 10vh; width:25vw;" [(ngModel)]="newTender.Description" name="Description"></textarea>
+        </div>
+    </div>
+    <span style="margin-left:35px">תאריך סיום המכרז</span>
+    <div class="ui-g-12 ui-md-4 row">
+        <p-calendar [(ngModel)]="newTender.EndDate" [showIcon]="true" name="aa"></p-calendar>
+    </div>
+    <div style="clear:both"></div>
+    <div class="row">
+        <label for="MaxCost">מחיר מקסימלי</label>
+        <div class="input-field col s6">
+            <input type="number" [(ngModel)]="newTender.MaxCost" name="MaxCost">
+        </div>
+    </div>
+    <button class="btn waves-effect waves-light teal" type="submit" name="action">שמירה</button>
+</form> -->
+
+<!-- **************************** -->
+
+<body class="w3-container">
+    <div id="id01" class="w3-modal" style="display:block">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="w3-modal-content w3-card-3 w3-animate-zoom">
+                        <div class="w3-center w3-light-grey">
+                            <br>
+                            <h1 class="sign-up__title">
+                                מודעת דרושים חדשה
+                            </h1>
+                            <p class="sign-up__descr">
+                                הזן את פרטי המוצר המבוקש
+                            </p>
+                        </div>
+                        <div class="w3-center">
+                            <br>
+                            <header class="sign-up__header">
+                                <span class="w3-closebtn w3-hover-red w3-container w3-display-topright" (click)="cancle()">&times;</span>
+
+                            </header>
+                        </div>
+                        <div class="w3-container">
+                            <div class="w3-section">
+
+                                <body>
+                                    <form (ngSubmit)="addNewTender()" class="col s12">
+                                        <div class="input">
+                                            <div class="input__container">
+                                                <label for="category">קטגוריה</label>
+                                                <select name="category" class="input__field" #c (change)="onSelectCategory(c.value)" value="בחר קטגוריה">
+                                                    <option [ngValue]="undefined" hidden selected>בחר קטגוריה</option>
+                                                    <option *ngFor="let item of categoryList" [ngValue]="item.CategoryId" value={{item.CategoryId}}>{{item.CategoryName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="input">
+                                            <div class="input__container">
+                                                <label for="product">מוצר</label>
+                                                <select name="product" class="input__field" [(ngModel)]="newTender.ProductId" required="required" #product="ngModel">
+                                                    <option [ngValue]="undefined" hidden selected>בחר מוצר</option>
+                                                    <option *ngFor="let item of productList" value={{item.ProductId}}>{{item.ProductName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="input">
+                                            <div class="input__container">
+                                                <!-- <label for="areas" class="input__label">אזור</label> -->
+                                                <select class="input__field" name="areas" #a (change)="onSelectArea(a.value)" value="בחר איזור">
+                                                    <option [ngValue]="undefined" hidden selected> איזור</option>
+                                                    <option *ngFor="let item of AreasList" [ngValue]="item.AreaId" value={{item.AreaId}}>{{item.AreaName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="input">
+                                            <div class="input__container">
+                                                <!-- <label for="city" class="input__label">עיר</label> -->
+                                                <select class="input__field" id="sel1" name="city" [(ngModel)]="newTender.City" required="required" #product="ngModel">
+                                                    <option [ngValue]="undefined" hidden selected> עיר</option>
+                                                    <option *ngFor="let item of citiesList" value={{item.CityId}}>{{item.CityName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input">
+                                                <div class="input__container">
+                                                    <label class="input__label" for="description">תיאור</label>
+                                                    <input class="input__field" id="description" required placeholder="תיאור" type="text" [(ngModel)]="newTender.Description"
+                                                        name="description" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input">
+                                                <div class="input__container">
+                                                    <span>תאריך סיום המכרז</span>
+                                                    <input type="date" [(ngModel)]="newTender.EndDate" name="endDate">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input">
+                                                <div class="input__container">
+                                                    <label class="input__label" for="maxCost">מחיר מקסימלי</label>
+                                                    <input class="input__field" id="maxCost" required type="number" [(ngModel)]="newTender.MaxCost" name="maxCost" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                                <label>המוצר חדש?</label>
+                                                <div class="input">
+                                                  <label class="switch">
+                                                    <input type="checkbox" [(ngModel)]="newTender.IsNew" name="messages" dir="ltr">
+                                                    <div class="slider round" dir="ltr"></div>
+                                                  </label>
+                                                </div>
+                                              </div>
+                                        <div class="row">
+                                            <div class="component component--primary form__button">
+                                                <button class="btn btn--regular" tabindex="1" type="submit">שמירה</button>
+                                            </div>
+                                        </div>
+                                        <div class="form__row sign-up__sign">
+                                        </div>
+                                    </form>
+                                </body>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

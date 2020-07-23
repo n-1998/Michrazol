@@ -1,0 +1,81 @@
+<div id="wrapper" style="width: 213vh;">
+    <div class="tabs">
+        <div class="tab-2">
+            <div>
+            <label for="tab2-1" (click)="display()">מוצרים המשתתפים במכרז</label>
+            <input id="tab2-1" name="tabs-two" class="link" type="radio" checked="checked">
+            <div hidden={{tab1hidden}}>
+                <app-view-all-products-participating-in-tender style="display: block;margin-top: -18vh;"></app-view-all-products-participating-in-tender>
+            </div>
+            </div>
+            </div>
+        <div class="tab-2">
+            <label for="tab2-2" (click)="display()">בחירת מוצרים למכרז</label>
+            <input id="tab2-2" name="tabs-two" class="link" type="radio">
+            <div style="z-index: -30; position: absolute; right: -119vh; top: 18vh;" hidden={{tab2hidden}}>
+            <div id="wrapper">
+                <h1 id="title" *ngIf="!isBuy">בחירת מוצרים למכרז</h1>
+                <h1 id="title" *ngIf="isBuy">מוצרים נוספים בעלות גבוהה יותר</h1>
+                <div>
+                  <div *ngFor="let item of productsList">
+                    <button  class="buyButton tooltip-bottom" data-tooltip="בחירה" (click)="choose(item)">
+                        <img style="height: 4.4vh;" src="../../../../assets/select.gif"/>
+                    </button>
+                    <div (click)="showDeatails(item.ProductId)"  class="productCard productLine">
+                    <div ><p class="price">{{item.price}} ש"ח </p></div>
+                    <div class="details">
+                      <p>{{item.Description}}</p>
+                      <p *ngIf="item.IsNew==true" style="text-align: center; font-size: 3vh;">-מוצר חדש-</p>
+                      <p *ngIf="item.IsNew==false" style="text-align: center; font-size: 3vh;">-יד שניה-</p>
+                    </div>
+                    <img class="productImage" *ngIf="item.images[0]" [src]="item.images[0]"/>
+                    <img class="productImage" *ngIf="!item.images[0]" src="../../../../assets/noImage.jpg"/>
+                    </div>
+                
+                    <img (click)="delete(item)" style="    height: 5vh;margin-left: 25vh; margin-top: -65vh;" *ngIf="isChoose" src="../../../../assets/delete (2).png"/>
+                  </div>
+                </div>
+                    <h3 *ngIf="productsList[0]==null" style="    text-align: center;
+                color: gray;">אין מוצרים להצגה.</h3>
+                </div>
+            
+            <!-- <div>
+                <table class='table table-striped' *ngIf="productForSlaeList">
+                    <thead>
+                        <tr>מוצרים מוצרים למכירה השמורים במאגר</tr>
+                        <tr>
+                            <th></th>
+                            <th>מוצר</th>
+                            <th>תיאור</th>
+                            <th>עיר</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of productForSlaeList">
+                            <td><input type="checkbox" (click)="selectedProduct(item)"></td>
+                            <div *ngFor="let p of products">
+                                <td *ngIf="p.ProductId==item.ProductId">
+                                    {{p.ProductName}}
+                                </td>
+                            </div>
+                            <td>{{item.Description}}</td>
+
+                            <div *ngFor="let c of cities">
+                                <td *ngIf="c.CityId==item.City">
+                                    {{c.CityName}}
+                                </td>
+                            </div>
+                            <td>
+                                <button title="ערוך " class="btn btn-info"  ">ערוך</button>
+                                <button class="btn btn-secondary" (click)="viewProductDetails(item)">לפרטים נוספים לחץ
+                                    כאן</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="button" (click)="saveSelectedProducts()" style="    margin-left: 97vh;" value="שמירה">
+            </div> -->
+        </div>
+    </div>
+</div>
+</div>

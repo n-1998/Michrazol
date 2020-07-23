@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MichrazolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories" FromRole="Categories" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="AreaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CitiesAreas" Relationship="Self.FK_Cities_CitiesAreas" FromRole="Cities" ToRole="CitiesAreas" />
+    <NavigationProperty Name="ProductForSale" Relationship="Self.FK_ProductForSale_Cities" FromRole="Cities" ToRole="ProductForSale" />
+    <NavigationProperty Name="Tender" Relationship="Self.FK_Tender_Cities" FromRole="Cities" ToRole="Tender" />
+  </EntityType>
+  <EntityType Name="CitiesAreas">
+    <Key>
+      <PropertyRef Name="AreaId" />
+    </Key>
+    <Property Name="AreaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cities" Relationship="Self.FK_Cities_CitiesAreas" FromRole="CitiesAreas" ToRole="Cities" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ImgName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ImgGuid" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ProductForSale" Relationship="Self.FK_Images_ProductForSale" FromRole="Images" ToRole="ProductForSale" />
+  </EntityType>
+  <EntityType Name="PasswordResetRequest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ProductForSale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+    <Property Name="City" Type="Int32" />
+    <Property Name="InitialBid" Type="Int32" Nullable="false" />
+    <Property Name="InterestedInMessages" Type="Boolean" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsNew" Type="Boolean" Nullable="false" />
+    <Property Name="SelledToTenderId" Type="Int32" />
+    <NavigationProperty Name="Cities" Relationship="Self.FK_ProductForSale_Cities" FromRole="ProductForSale" ToRole="Cities" />
+    <NavigationProperty Name="Images" Relationship="Self.FK_Images_ProductForSale" FromRole="ProductForSale" ToRole="Images" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductForSale_Products" FromRole="ProductForSale" ToRole="Products" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_ProductForSale_Users" FromRole="ProductForSale" ToRole="Users" />
+    <NavigationProperty Name="SuggestedPrices" Relationship="Self.FK_SuggestedPrices_ProductForSale" FromRole="ProductForSale" ToRole="SuggestedPrices" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
+    <NavigationProperty Name="ProductForSale" Relationship="Self.FK_ProductForSale_Products" FromRole="Products" ToRole="ProductForSale" />
+    <NavigationProperty Name="Tender" Relationship="Self.FK_Tender_Products" FromRole="Products" ToRole="Tender" />
+  </EntityType>
+  <EntityType Name="SuggestedPrices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenderId" Type="Int32" Nullable="false" />
+    <Property Name="UserProductId" Type="Int32" Nullable="false" />
+    <Property Name="SuggestedPrice" Type="Int32" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="ProductForSale" Relationship="Self.FK_SuggestedPrices_ProductForSale" FromRole="SuggestedPrices" ToRole="ProductForSale" />
+    <NavigationProperty Name="Tender" Relationship="Self.FK_SuggestedPrices_Tender" FromRole="SuggestedPrices" ToRole="Tender" />
+  </EntityType>
+  <EntityType Name="Tender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="MaxCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="City" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsNew" Type="Boolean" />
+    <NavigationProperty Name="Cities" Relationship="Self.FK_Tender_Cities" FromRole="Tender" ToRole="Cities" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Tender_Products" FromRole="Tender" ToRole="Products" />
+    <NavigationProperty Name="SuggestedPrices" Relationship="Self.FK_SuggestedPrices_Tender" FromRole="Tender" ToRole="SuggestedPrices" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Tender_Users" FromRole="Tender" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tz" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Mail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Tel" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ProductForSale" Relationship="Self.FK_ProductForSale_Users" FromRole="Users" ToRole="ProductForSale" />
+    <NavigationProperty Name="Tender" Relationship="Self.FK_Tender_Users" FromRole="Users" ToRole="Tender" />
+  </EntityType>
+  <Association Name="FK_Products_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cities_CitiesAreas">
+    <End Role="CitiesAreas" Type="Self.CitiesAreas" Multiplicity="1" />
+    <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CitiesAreas">
+        <PropertyRef Name="AreaId" />
+      </Principal>
+      <Dependent Role="Cities">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductForSale_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+    <End Role="ProductForSale" Type="Self.ProductForSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="ProductForSale">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+    <End Role="Tender" Type="Self.Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Images_ProductForSale">
+    <End Role="ProductForSale" Type="Self.ProductForSale" Multiplicity="1" />
+    <End Role="Images" Type="Self.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductForSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductForSale_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductForSale" Type="Self.ProductForSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductForSale">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductForSale_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ProductForSale" Type="Self.ProductForSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ProductForSale">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SuggestedPrices_ProductForSale">
+    <End Role="ProductForSale" Type="Self.ProductForSale" Multiplicity="1" />
+    <End Role="SuggestedPrices" Type="Self.SuggestedPrices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductForSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SuggestedPrices">
+        <PropertyRef Name="UserProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Tender" Type="Self.Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SuggestedPrices_Tender">
+    <End Role="Tender" Type="Self.Tender" Multiplicity="1" />
+    <End Role="SuggestedPrices" Type="Self.SuggestedPrices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SuggestedPrices">
+        <PropertyRef Name="TenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Tender" Type="Self.Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MichrazolEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Categories" />
+    <EntitySet Name="Cities" EntityType="Self.Cities" />
+    <EntitySet Name="CitiesAreas" EntityType="Self.CitiesAreas" />
+    <EntitySet Name="Images" EntityType="Self.Images" />
+    <EntitySet Name="PasswordResetRequest" EntityType="Self.PasswordResetRequest" />
+    <EntitySet Name="ProductForSale" EntityType="Self.ProductForSale" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="SuggestedPrices" EntityType="Self.SuggestedPrices" />
+    <EntitySet Name="Tender" EntityType="Self.Tender" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cities_CitiesAreas" Association="Self.FK_Cities_CitiesAreas">
+      <End Role="CitiesAreas" EntitySet="CitiesAreas" />
+      <End Role="Cities" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductForSale_Cities" Association="Self.FK_ProductForSale_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Cities" Association="Self.FK_Tender_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Tender" EntitySet="Tender" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Images_ProductForSale" Association="Self.FK_Images_ProductForSale">
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductForSale_Products" Association="Self.FK_ProductForSale_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductForSale_Users" Association="Self.FK_ProductForSale_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SuggestedPrices_ProductForSale" Association="Self.FK_SuggestedPrices_ProductForSale">
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+      <End Role="SuggestedPrices" EntitySet="SuggestedPrices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Products" Association="Self.FK_Tender_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Tender" EntitySet="Tender" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SuggestedPrices_Tender" Association="Self.FK_SuggestedPrices_Tender">
+      <End Role="Tender" EntitySet="Tender" />
+      <End Role="SuggestedPrices" EntitySet="SuggestedPrices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Users" Association="Self.FK_Tender_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Tender" EntitySet="Tender" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

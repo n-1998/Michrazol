@@ -1,0 +1,794 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  line-height: 1.43;
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+input, button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+}
+
+input::-webkit-input-placeholder {
+  color: transparent;
+  -webkit-user-select: none;
+          user-select: none;
+}
+input::-moz-placeholder {
+  color: transparent;
+  -moz-user-select: none;
+       user-select: none;
+}
+input:-moz-placeholder {
+  color: transparent;
+  -moz-user-select: none;
+       user-select: none;
+}
+input:-ms-input-placeholder {
+  color: transparent;
+  -ms-user-select: none;
+      user-select: none;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px #fff inset;
+  -webkit-text-fill-color: inherit;
+}
+
+.input {
+  flex: 1;
+  width: 100%;
+  transition: width 0.18s ease;
+}
+.input__container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 40px;
+  width: 100%;
+}
+.input__label {
+  position: absolute;
+  padding: 0 8px;
+  top: 0;
+  color: #3d3c48;
+  cursor: text;
+  font-size: 15px;
+  transition-property: top, font-size;
+  transition-timing-function: linear;
+  transition-duration: 0.18s;
+}
+.input__field {
+  background: transparent;
+  border: 0px solid #e5e5e6;
+  border-bottom-width: 2px;
+  padding: 6px 8px;
+  font-size: 15px;
+  transition: border 0.28s ease-out;
+}
+.input__field:focus, .input__field:not(:placeholder-shown) {
+  border-color: #434176;
+}
+.input__field:focus + .input__label, .input__field:not(:placeholder-shown) + .input__label {
+  font-size: 13px;
+  top: -16px;
+}
+.input:hover .input__field:placeholder-shown:not(:focus) {
+  border-color: #918fc1;
+}
+
+.input-checkbox__field {
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  margin: 0;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 1;
+}
+.input-checkbox__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.input-checkbox__label {
+  padding: 0 16px;
+  color: #3d3c48;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 18px;
+}
+.input-checkbox__square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 18px;
+  width: 18px;
+  border: 1px solid #c5c5c9;
+  border-radius: 4px;
+  transition: border 0.28s ease-out;
+  z-index: 0;
+}
+.input-checkbox__square::before, .input-checkbox__square::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  background: #e5e5e6;
+  border-radius: 2px;
+  transition: background 0.28s ease-out;
+}
+.input-checkbox__square::before {
+  height: 4px;
+  -webkit-transform: rotate(-40deg) translate3d(-1.5px, 0px, 0);
+          transform: rotate(-40deg) translate3d(-1.5px, 0px, 0);
+}
+.input-checkbox__square::after {
+  height: 8px;
+  -webkit-transform: rotate(40deg);
+          transform: rotate(40deg);
+}
+.input-checkbox:hover .input-checkbox__square::before, .input-checkbox:hover .input-checkbox__square::after {
+  background: #434176;
+}
+.input-checkbox__field:focus + .input-checkbox__square::before, .input-checkbox__field:focus + .input-checkbox__square::after, .input-checkbox__field:checked + .input-checkbox__square::before, .input-checkbox__field:checked + .input-checkbox__square::after {
+  background: #434176;
+}
+.input-checkbox__field:checked + .input-checkbox__square {
+  border-color: #434176;
+}
+
+.btn {
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.28s ease-out, box-shadow 0.28s ease-out;
+}
+.btn--regular, .btn--line {
+  padding: 16px 56px;
+}
+.btn--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.component--primary .btn--regular {
+  background-color: #434176;
+  color: #FFF;
+}
+.component--primary .btn--regular:hover {
+  background-color: #6361a8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.component--primary .btn--regular:focus, .component--primary .btn--regular:active {
+  background-color: #34335c;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.link {
+  text-decoration: none;
+  color: #434176;
+  display: inline-block;
+  transition: color 0.28s ease-out;
+}
+.link:hover {
+  color: #161627;
+}
+
+.form {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+.form__row {
+  margin-bottom: 40px;
+}
+.form__row--two {
+  margin: 0 -16px 0px;
+}
+@media screen and (min-width: 500px) {
+  .form__row--two {
+    display: flex;
+  }
+}
+.form__inline-input {
+  padding: 0 16px;
+  margin-bottom: 40px;
+}
+@media screen and (min-width: 500px) {
+  .form__inline-input {
+    width: 50%;
+    flex: 1 0 auto;
+  }
+}
+.form__button {
+  text-align: center;
+}
+
+.sign-up {
+  min-height: 100vh;
+}
+.sign-up__container {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+}
+.sign-up__image, .sign-up__content {
+  flex: 1;
+}
+.sign-up__image {
+  display: none;
+  background-image: linear-gradient(210deg, #242348, #5A55AA);
+  position: relative;
+  overflow: hidden;
+}
+.sign-up__image svg {
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+}
+@media screen and (min-width: 1000px) {
+  .sign-up__image {
+    display: block;
+  }
+}
+.sign-up__content {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 14vh 24px 10vh;
+  background-color: #fafafa;
+}
+.sign-up__header {
+  margin-bottom: 48px;
+  text-align: center;
+}
+.sign-up__title {
+  margin-bottom: 16px;
+  color: #434176;
+}
+.sign-up__descr {
+  font-size: 1.125rem;
+  color: rgba(67, 65, 118, 0.4);
+}
+.sign-up__form {
+  width: 100%;
+}
+.sign-up__sign, .sign-up__terms {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.sign-up__sign {
+  margin-top: -8px;
+}
+.sign-up__terms {
+  margin-top: 80px;
+}
+
+.chart .a {
+  fill: url(#a);
+}
+.chart .b {
+  -webkit-clip-path: url(#b);
+          clip-path: url(#b);
+}
+.chart .c {
+  opacity: 0.201;
+}
+.chart .d, .chart .g {
+  opacity: 0.7;
+}
+.chart .d {
+  fill: url(#c);
+}
+.chart .e, .chart .h, .chart .k {
+  fill: none;
+}
+.chart .e {
+  stroke: #a3a0fb;
+}
+.chart .e, .chart .f, .chart .h, .chart .i {
+  stroke-width: 2px;
+}
+.chart .f, .chart .i {
+  fill: #fff;
+}
+.chart .f {
+  stroke: #a4a1fb;
+}
+.chart .g {
+  fill: url(#e);
+}
+.chart .h {
+  stroke: #54d8ff;
+}
+.chart .i {
+  stroke: #55d8fe;
+}
+.chart .j {
+  stroke: none;
+}
+
+.modal.show {
+  display:block;
+}
+
+
+
+
+/* *********************** */
+.form-steps {
+  display: block;
+  width: 100%;
+  position: relative;
+  margin: 40px 0;
+}
+.form-steps:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.form-steps__item {
+  padding: 0;
+  position: relative;
+  display: block;
+  float: left;
+  width: 25%;
+  text-align: center;
+}
+.form-steps__item-content {
+  display: inline-block;
+}
+.form-steps__item-icon {
+  background: #eceff1;
+  color: #00929f8a;
+  display: block;
+  border-radius: 100%;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  margin: 0 auto 10px auto;
+  position: relative;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 2;
+}
+.form-steps__item-text {
+  font-size: 13px;
+  color: #00939f;
+  font-weight: 500;
+}
+.form-steps__item-line {
+  display: inline-block;
+  height: 3px;
+  width: 100%;
+  background:#00939f;
+  float: left;
+  position: absolute;
+  left: -50%;
+  top: 12px;
+  z-index: 1;
+}
+.form-steps__item--active .form-steps__item-icon {
+  background: #00939f;
+  color: #ffffff;
+}
+.form-steps__item--active .form-steps__item-text {
+  color: #00939f;
+}
+.form-steps__item--active .form-steps__item-line {
+  background: #00aeef;
+}
+.form-steps__item--completed .form-steps__item-text {
+  color: #00939f;
+}
+.form-steps__item--completed .form-steps__item-icon {
+  background: #00aeef;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBkYXRhLW5hbWU9IkxheWVyIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDkuMTIgNyI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTkuMTIgMS4wNkw4LjA2IDAgMy4xOCA0Ljg4IDEuMDYgMi43NiAwIDMuODIgMy4xOCA3bDUuOTQtNS45NHoiLz48L3N2Zz4=);
+  color: transparent;
+  background-size: 10px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+}
+.form-steps__item--completed .form-steps__item-line {
+  background: #00aeef;
+}
+.form-steps__item-icon[_ngcontent-c2] {
+  background: #eceff1;
+  color: #00b9ca;
+  display: block;
+  border-radius: 100%;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  margin: 0 auto 10px auto;
+  position: relative;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 2;
+  width: 70px;
+  height: 70px;
+  border: 2px solid #00939f;
+  background-color: white !important;
+  color: #00939f !important;
+  border-radius: 50%;
+  padding: 22px 18px 15px 18px;
+  margin-top: -22px;
+  box-shadow: 0px 1px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+.form-step-focus[_ngcontent-c2],.form-steps__item-icon:hover{
+border: 2px solid gray;
+color: rgb(177, 177, 177) !important;
+background-color: white !important;
+box-shadow:0px 1px 20px 3px rgba(16, 21, 243, 0.31), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+
+.w3-light-grey, .w3-hover-light-grey:hover {
+color: #000!important;
+background-color: #00939f!important;
+}
+.sign-up__title[_ngcontent-c2] {
+margin-bottom: 16px;
+color: #f8f9fa;
+}
+
+h1[_ngcontent-c2] {
+font-size: 4.5em;
+/* font-weight: bold; */
+}
+
+
+.btn:not(:disabled):not(.disabled) {
+cursor: pointer;
+}
+
+[type=reset], [type=submit], button, html [type=button] {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+[type=reset], [type=submit], button, html [type=button] {
+-webkit-appearance: button;
+}
+.btn-rounded {
+-webkit-border-radius: 10em;
+border-radius: 10em;
+}
+.btn-mdb-color {
+background-color: #00939f!important;
+color: #fff!important;
+}
+.btn {
+-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+box-shadow: 0px 1px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+padding: .84rem 2.14rem;
+font-size: .81rem;
+-webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+-o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+margin: .375rem;
+border: 0;
+-webkit-border-radius: .125rem;
+border-radius: .125rem;
+cursor: pointer;
+text-transform: uppercase;
+white-space: normal;
+word-wrap: break-word;
+color: #fff;
+}
+.waves-effect {
+position: relative;
+cursor: pointer;
+overflow: hidden;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-tap-highlight-color: transparent;
+}
+.btn:not(:disabled):not(.disabled) {
+font-size: 15px;
+}
+[data-tooltip][_ngcontent-c1] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  height: 8vh;
+  width: 8vh;
+  margin-top: -2vh;
+  background-color: #00939f;
+  color: white;
+  border: solid white;
+  box-shadow: 0 0 5px 1px black;
+}
+i{
+  padding-top: 2vh;
+}
+.w3-light-grey[_ngcontent-c1], .w3-hover-light-grey[_ngcontent-c1]:hover {
+  color: #fff!important;
+  background-color: #00939f!important;
+}
+.sign-up__title[_ngcontent-c1] {
+  margin-bottom: 16px;
+  color: #ffffff;
+  font-weight: 500;
+}
+/* ****************** */
+html,
+body {
+height: 100%;
+}
+
+#vDivhHidden {
+align-items: center;
+background-color: #00939f;
+display: flex;
+justify-content: center;
+display: contents;
+}
+#vDiv {
+align-items: center;
+background-color: #35297B;
+display: flex;
+justify-content: center;
+}
+
+@-webkit-keyframes scaleAnimation {
+0% {
+  opacity: 0;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+100% {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+}
+
+@keyframes scaleAnimation {
+0% {
+  opacity: 0;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+100% {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+}
+@-webkit-keyframes drawCircle {
+0% {
+  stroke-dashoffset: 151px;
+}
+100% {
+  stroke-dashoffset: 0;
+}
+}
+@keyframes drawCircle {
+0% {
+  stroke-dashoffset: 151px;
+}
+100% {
+  stroke-dashoffset: 0;
+}
+}
+@-webkit-keyframes drawCheck {
+0% {
+  stroke-dashoffset: 36px;
+}
+100% {
+  stroke-dashoffset: 0;
+}
+}
+@keyframes drawCheck {
+0% {
+  stroke-dashoffset: 36px;
+}
+100% {
+  stroke-dashoffset: 0;
+}
+}
+@-webkit-keyframes fadeOut {
+0% {
+  opacity: 1;
+}
+100% {
+  opacity: 0;
+}
+}
+@keyframes fadeOut {
+0% {
+  opacity: 1;
+}
+100% {
+  opacity: 0;
+}
+}
+@-webkit-keyframes fadeIn {
+0% {
+  opacity: 0;
+}
+100% {
+  opacity: 1;
+}
+}
+@keyframes fadeIn {
+0% {
+  opacity: 0;
+}
+100% {
+  opacity: 1;
+}
+}
+#successAnimationCircle {
+stroke-dasharray: 151px 151px;
+stroke: #FFF;
+}
+
+#successAnimationCheck {
+stroke-dasharray: 36px 36px;
+stroke: #FFF;
+}
+
+#successAnimationResult {
+fill: #FFF;
+opacity: 0;
+}
+
+#successAnimation.animated {
+-webkit-animation: 1s ease-out 0s 1 both scaleAnimation;
+        animation: 1s ease-out 0s 1 both scaleAnimation;
+}
+#successAnimation.animated #successAnimationCircle {
+-webkit-animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCircle, 0.3s linear 0.9s 1 both fadeOut;
+        animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCircle, 0.3s linear 0.9s 1 both fadeOut;
+}
+#successAnimation.animated #successAnimationCheck {
+-webkit-animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCheck, 0.3s linear 0.9s 1 both fadeOut;
+        animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCheck, 0.3s linear 0.9s 1 both fadeOut;
+}
+#successAnimation.animated #successAnimationResult {
+-webkit-animation: 0.3s linear 0.9s both fadeIn;
+        animation: 0.3s linear 0.9s both fadeIn;
+}
+#successAnimation.animated[_ngcontent-c2] {
+-webkit-animation: 1s ease-out 0s 1 both scaleAnimation;
+animation: 1s ease-out 0s 1 both scaleAnimation;
+height: 247px;
+}
+
+#enterButton {
+  background-color: #919191;
+font-size: x-large;
+box-shadow: 0 0 0px 0px black;
+}
+#successText{
+color: white;
+text-align: center;
+font-size: xx-large;
+}
+
+/* ***************************tooltip */
+/**
+* Demo styles
+* Not needed for tooltips to work
+*/
+
+/* `border-box`... ALL THE THINGS! */
+html {
+box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+box-sizing: inherit;
+}
+
+body {
+margin: 64px auto;
+text-align: center;
+font-size: 100%;
+max-width: 640px;
+width: 94%;
+}
+
+a:hover {
+text-decoration: none;
+}
+
+header,
+.demo,
+.demo p {
+margin: 4em 0;
+text-align: center;
+}
+
+/**
+* Tooltip Styles
+*/
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+position: relative;
+z-index: 2;
+cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+visibility: hidden;
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+opacity: 0;
+pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+position: absolute;
+bottom: 150%;
+left: 50%;
+margin-bottom: 5px;
+margin-left: -80px;
+padding: 7px;
+width: 160px;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background-color: #000;
+background-color: hsla(0, 0%, 20%, 0.9);
+color: #fff;
+content: attr(data-tooltip);
+text-align: center;
+font-size: 14px;
+line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+position: absolute;
+bottom: 150%;
+left: 50%;
+margin-left: -5px;
+width: 0;
+border-top: 5px solid #000;
+border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+border-right: 5px solid transparent;
+border-left: 5px solid transparent;
+content: " ";
+font-size: 0;
+line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+visibility: visible;
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+opacity: 1;
+}

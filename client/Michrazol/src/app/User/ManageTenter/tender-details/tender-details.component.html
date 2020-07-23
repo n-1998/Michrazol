@@ -1,0 +1,86 @@
+<div id="daysDiff">
+    <img class="informationIcon" src="../../../../assets/pro.gif" style="    position: absolute;
+          display: -webkit-box;
+          height: 30vh;
+          width: 30vh;">
+    <div style="position: absolute;
+          left: 7vh;
+          text-align: center;
+          font-size: 9vh;
+          padding: 2vh;">
+        <div *ngIf="details.sumPepole!=0" style="color: #4cdbc4;"> המחיר הנמוך ביותר</div>
+        <div *ngIf="details.sumPepole!=0" style="color: #4cdbc4;position: absolute;width: 79vh;margin-right: 63vh;"> {{details.LowestPrice}} ש"ח</div>
+        <div *ngIf="details.sumPepole==0" style="color: #4cdbc4;">עדיין לא נבחרו מוצרים</div>
+        <div *ngIf="details.sumPepole==0" style="color: #4cdbc4;position: absolute;width: 79vh;margin-right: 63vh;">למכרז זה</div>
+    </div>
+    <label id="time" *ngIf="details.DayDiff>1">נותרו {{details.DayDiff}} ימים</label>
+    <label id="time" *ngIf="details.DayDiff==1">נותר יום אחד</label>
+    <label id="time" *ngIf="details.DayDiff==0" style="    left: 33vh;
+  font-size: 4vh;
+  margin-top: -14vh;">זמן
+        המכרז הסתיים</label>
+    <button (click)="closeTender()" *ngIf="details.DayDiff==0" class="btn closeTender" mdbRippleRadius>סגירת מכרז</button>
+    <!-- שעון חול -->
+    <svg id="hourglass" viewBox="0 0 21 30" version="1.1" *ngIf="details.DayDiff!=0">
+        <defs>
+            <path d="M11,10.5 L11,7.75 C11.0028528,5.90912756 10.082886,4.18935279 8.55,3.17 L7,2.17 C6.36568066,1.74619772 5.84951484,1.16809201 5.5,0.49 C5.14634906,1.15713543 4.63051187,1.72455633 4,2.14 L2.45,3.14 C0.9082084,4.16521275 -0.0129583408,5.89851017 -1.33229473e-15,7.75 L-1.33229473e-15,10.5 L11,10.5 Z"
+                id="path-1"></path>
+            <path d="M-2.86192104e-16,0.5 L-2.86192104e-16,3.25 C-0.00285281696,5.09087244 0.917114035,6.81064721 2.45,7.83 L4,8.83 C4.63431934,9.25380228 5.15048516,9.83190799 5.5,10.51 C5.85365094,9.84286457 6.36948813,9.27544367 7,8.86 L8.55,7.86 C10.0917916,6.83478725 11.0129583,5.10148983 11,3.25 L11,0.5 L-2.86192104e-16,0.5 Z"
+                id="path-3"></path>
+        </defs>
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="clessidra" transform="translate(0.000000, 1.000000)">
+                <g id="lower-cup" transform="translate(5.000000, 16.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="maskSabbia2"></g>
+                    <rect id="sabbia2" fill="#656669" fill-rule="nonzero" mask="url(#mask-2)" x="0" y="0.46" width="11"
+                        height="10.04"></rect>
+                </g>
+                <g id="upper-cup" transform="translate(5.000000, 1.000000)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="maskSabbia1"></g>
+                    <rect id="sabbia1" fill="#656669" fill-rule="nonzero" mask="url(#mask-4)" x="0" y="0.5" width="11"
+                        height="10.04"></rect>
+                </g>
+                <path d="M0.5,28 L20.5,28" id="Shape" stroke="#656669"></path>
+                <path d="M0.5,0 L20.5,0" id="Shape" stroke="#656669"></path>
+                <path d="M14.38,10.08 L12.83,11.08 C11.9927071,11.6362116 11.4896247,12.5747982 11.49,13.58 L11.49,14.12 C11.4915529,15.2554991 12.134067,16.292811 13.15,16.8 L13.62,17.04 C15.9913615,18.2254463 17.4895311,20.6488421 17.49,23.3 L17.49,28 L3.5,28 L3.5,23.33 C3.50046886,20.6788421 4.99863848,18.2554463 7.37,17.07 L7.84,16.83 C8.85593301,16.322811 9.49844711,15.2854991 9.5,14.15 L9.5,13.61 C9.50037531,12.6047982 8.99729292,11.6662116 8.16,11.11 L6.61,10.11 C4.65476469,8.80311988 3.48645742,6.60174347 3.5,4.25 L3.5,0 L17.5,0 L17.5,4.25 C17.5012432,6.59302367 16.3301611,8.7812956 14.38,10.08 Z"
+                    id="Shape" stroke="#656669"></path>
+            </g>
+        </g>
+    </svg>
+</div>
+<!-- שעון חול -->
+<div>
+
+    <div id="information">
+        <div class="ditalsInformation">
+            <img class="informationIcon" src="../../../../assets/transfer.png">
+            <div class="informationTitle" style="background-color: #fc6f58;">משתתפים </div>
+            <div class="information" style=" color: #fc6f58; padding-top: 5vh;"> {{details.sumPepole }} מוצרים משתתפים</div>
+        </div>
+
+        <div class="ditalsInformation">
+            <img class="informationIcon" src="../../../../assets/stopclock.png">
+            <div class="informationTitle" style="background-color: #90a4c6; ">תחילת המכרז </div>
+            <div class="information" style="color: #90979c;">בתאריך <br />{{tender.StartDate|date:'dd/MM/yyyy'}}</div>
+        </div>
+        <div class="ditalsInformation">
+            <img class="informationIcon" src="../../../../assets/hourglass.png">
+            <div class="informationTitle" style="background-color: #273b7a; ">סיום המכרז </div>
+            <div class="information" style="color: #273b7a;">בתאריך <br />{{tender.EndDate|date:'dd/MM/yyyy'}}</div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <button class="btn" mdbRippleRadius style="width: 38vh; background-color: #00939f;" (click)="showProducts()">מוצרים
+        המשתתפים במכרז</button>
+    <button class="btn" mdbRippleRadius style="width: 38vh;    background-color: #00939f;" (click)="chooseProducts()">בחירת
+        מוצרים נוספים</button>
+    <button class="btn" mdbRippleRadius style="width: 38vh;    background-color: #00939f; margin-left: 38vh;" (click)="closeTender()">סגירת
+        מכרז</button>

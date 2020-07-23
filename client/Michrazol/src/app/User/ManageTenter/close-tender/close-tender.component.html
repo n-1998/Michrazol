@@ -1,0 +1,76 @@
+<div id="wrapper">
+      
+    <h1 style="    color: #00939f;
+    text-shadow: 3px 1px 3px black;
+    font-size: -webkit-xxx-large;
+    text-align: right; margin-right: 5vh;">סגירת מכרז</h1>
+    <h2 style="    color: #00939f;
+    text-shadow: 1px 1px 1px black;
+    text-align: right; margin-right: 5vh;">בחר את המוצר שברצונך לקנות:</h2>
+    <div id="continueTender">
+            <main class='container'>
+                <button class='myButt five' (click)="moreTime()">
+                    <div class='layer'>הארכת זמן המכרז</div>
+                    עדיין לא מצאת את המוצר הרצוי?
+                </button>
+            </main>
+    </div>
+<app-view-all-products-participating-in-tender></app-view-all-products-participating-in-tender>
+</div>
+
+<body class="w3-container" *ngIf="newDateToTender">
+        <div id="id01" class="w3-modal" style="display:block">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <div class="w3-modal-content w3-card-3 w3-animate-zoom">
+                  <div class="w3-center w3-light-grey">
+                    <br>
+                    <h1 class="sign-up__title">
+                      הארכת זמן המכרז
+                    </h1>
+                    <p class="sign-up__descr">
+                      הזן תאריך חדש שבו יסתיים המכרז
+                    </p>
+                  </div>
+      
+                  <div class="w3-center">
+                    <br>
+                    <header class="sign-up__header">
+                      <span class="w3-closebtn w3-hover-red w3-container w3-padding-hor-8 w3-display-topright" (click)="cancle()">&times;</span>
+      
+                    </header>
+                  </div>
+      
+                  <div class="w3-container">
+                    <div class="w3-section">
+      
+                      <body>
+                        <form class="sign-up__form form" (ngSubmit)="saveMoreTime()" ngNativeValidate>
+                          <div class="form__row">
+                            <div class="input">
+                              <div class="input__container">
+                                <input class="input__field" id="newDate" required placeholder="Email" type="date" [(ngModel)]="newDate" name="newDate" />
+                                <label class="input__label" for="newDate">תאריך</label>
+                              </div>
+                            </div>
+                          </div>
+      
+                          <div class="form__row">
+                              <button type="submit" class="btn btn-warning" mdbRippleRadius>אישור</button>
+                            <!-- <div class="component component--primary form__button">
+                              <button class="btn btn--regular " tabindex="1" type="submit">כנס</button>
+                            </div> -->
+                          </div>
+                          <div class="form__row sign-up__sign">
+                          </div>
+                        </form>
+                      </body>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>

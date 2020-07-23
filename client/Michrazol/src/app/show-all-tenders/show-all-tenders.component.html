@@ -1,0 +1,48 @@
+<h1 style="margin-top: 19vh;
+text-align: right;">
+   מכרזים פעילים
+</h1>
+<!-- public Id: number = 0,
+public ProductId: number = 0,
+public MaxCost: number = 0,
+public UserId: number = 0,
+public StartDate: Date=null,
+public City: number=0,
+public Description: string = "",
+public EndDate:Date=null -->
+<div class="row">
+<div class="col-10">
+<table class='table table-striped' *ngIf="TenderList&&!noTender" dir="rtl">
+    <thead>
+        <tr>
+            <th>מוצר</th>
+            <th>תיאור</th>
+            <th>מחיר מקסימלי</th>
+            <th>התחלת המכרז</th>
+            <th>סיום המכרז</th>
+            <th>עיר</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of TenderList">
+            <div *ngFor="let p of products">
+                <td *ngIf="p.ProductId==item.ProductId">
+                    {{p.ProductName}}
+                </td>
+            </div>
+            <td>{{item.Description}}</td>
+            <td>{{item.MaxCost}}</td>
+            <td>{{item.StartDate|date:'dd/MM/yyyy'}}</td>
+            <td>{{item.EndDate|date:'dd/MM/yyyy'}}</td>
+
+            <div *ngFor="let c of cities">
+                <td *ngIf="c.CityId==item.City">
+                    {{c.CityName}}
+                </td>
+            </div>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<h1 *ngIf="noTender">אין מכרזים פעילים.</h1>

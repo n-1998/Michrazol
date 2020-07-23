@@ -1,0 +1,132 @@
+<body class="w3-container" *ngIf="reset_password==false">
+  <div id="id01" style="display:block"  class="w3-modal">
+    <div class="container ">
+      <div class="row">
+        <div class="col-sm">
+          <div class="w3-modal-content w3-card-3 w3-animate-zoom">
+            <div class="w3-center w3-light-grey">
+              <br>
+              <h1 class="title">
+                כניסה
+              </h1>
+              <p class="sign-up__descr">
+                ברוכים הבאים! הקש מייל וסיסמה
+              </p>
+            </div>
+
+            <div class="w3-center">
+              <br>
+              <header class="sign-up__header">
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-hor-8 w3-display-topright" (click)="cancle()">&times;</span>
+
+              </header>
+            </div>
+
+            <div class="w3-container">
+              <div class="w3-section">
+
+                <body>
+                  <form class="sign-up__form form" (ngSubmit)="login()" ngNativeValidate>
+                    <div class="form__row">
+                      <div class="input">
+                        <div class="input__container">
+                          <input class="input__field" id="email" required placeholder="Email" type="email" [(ngModel)]="email" name="email" />
+                          <label class="input__label" for="email">מייל</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form__row">
+                      <div class="input">
+                        <div class="input__container">
+                          <input class="input__field" id="password" required placeholder="Password" type="password" [(ngModel)]="password" name="password"
+                          />
+                          <label class="input__label" for="password">סיסמה</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form__row">
+                        <button type="submit" class="btn" mdbRippleRadius>כנס</button>
+                      <!-- <div class="component component--primary form__button">
+                        <button class="btn btn--regular " tabindex="1" type="submit">כנס</button>
+                      </div> -->
+                    </div>
+                    <div class="form__row sign-up__sign">
+                      <label>אין לך חשבון? </label>
+                      <a href="app/register">הרשם</a>
+
+                      <br>
+                      <a (click)="forgotPassword()">שכחת סיסמה?</a>
+
+                    </div>
+                  </form>
+                </body>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<body class="w3-container" *ngIf="reset_password">
+  <div id="id01" class="w3-modal" style="display:block">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div class="w3-modal-content w3-card-3 w3-animate-zoom">
+            <div class="w3-center w3-light-grey">
+              <br>
+              <h1 class="sign-up__title">
+                שחזור סיסמה
+              </h1>
+              <p class="sign-up__descr">
+                הקש את כתובת האימייל איתה נרשמת למערכת
+              </p>
+            </div>
+
+            <div class="w3-center">
+              <br>
+              <header class="sign-up__header">
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-hor-8 w3-display-topright" (click)="cancle()">&times;</span>
+
+              </header>
+            </div>
+
+            <div class="w3-container">
+              <div class="w3-section">
+
+                <body>
+                  <form class="sign-up__form form" (ngSubmit)="resetPassword()" ngNativeValidate>
+                    <div class="form__row">
+                      <div class="input">
+                        <div class="input__container">
+                          <input class="input__field" id="email" required placeholder="Email" type="email" [(ngModel)]="email" name="email" />
+                          <label class="input__label" for="email">מייל</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form__row">
+                        <button type="submit" class="btn" mdbRippleRadius>אישור</button>
+                      <!-- <div class="component component--primary form__button">
+                        <button class="btn btn--regular " tabindex="1" type="submit">כנס</button>
+                      </div> -->
+                    </div>
+                    <div class="form__row sign-up__sign">
+                    </div>
+                  </form>
+                </body>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

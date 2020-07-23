@@ -1,0 +1,48 @@
+<div id="wrapper" *ngIf="isBuy">
+<h1 id="title">המוצר הזול ביותר</h1>
+<div>
+  <div>
+    <button *ngIf="isBuy" class="buyButton tooltip-bottom" data-tooltip="קנית מוצר" (click)="buy(cheepestProduct)">
+        <img style="height: 4.4vh;" src="../../../../assets/buyWhite.png"/>
+    </button>
+    <div (click)="showDeatails(cheepestProduct.ProductId)"  class="productCard productLine">
+    <div ><p class="price">{{cheepestProduct.price}} ש"ח </p></div>
+    <div class="details">
+      <p>{{cheepestProduct.Description}}</p>
+      <p *ngIf="cheepestProduct.IsNew==true" style="text-align: center; font-size: 3vh;">-מוצר חדש-</p>
+      <p *ngIf="cheepestProduct.IsNew==false" style="text-align: center; font-size: 3vh;">-יד שניה-</p>
+    </div>
+    <img class="productImage" *ngIf="cheepestProduct.images[0]" [src]="cheepestProduct.images[0]"/>
+    <img class="productImage" *ngIf="!cheepestProduct.images[0]" src="../../../../assets/noImage.jpg"/>
+    </div>
+
+    <img (click)="delete(cheepestProduct)" style="    height: 5vh;margin-left: 25vh; margin-top: -65vh;" *ngIf="isChoose" src="../../../../assets/delete (2).png"/>
+  </div>
+</div>
+</div>
+
+<div id="wrapper">
+    <h1 id="title" *ngIf="!isBuy">מוצרים המשתתפים במכרז</h1>
+    <h1 id="title" *ngIf="isBuy">מוצרים נוספים בעלות גבוהה יותר</h1>
+    <div>
+      <div *ngFor="let item of productsList">
+        <button *ngIf="isBuy" class="buyButton tooltip-bottom" data-tooltip="קנית מוצר" (click)="buy(item)">
+            <img style="height: 4.4vh;" src="../../../../assets/buyWhite.png"/>
+        </button>
+        <div (click)="showDeatails(item.ProductId)"  class="productCard productLine">
+        <div ><p class="price">{{item.price}} ש"ח </p></div>
+        <div class="details">
+          <p>{{item.Description}}</p>
+          <p *ngIf="item.IsNew==true" style="text-align: center; font-size: 3vh;">-מוצר חדש-</p>
+          <p *ngIf="item.IsNew==false" style="text-align: center; font-size: 3vh;">-יד שניה-</p>
+        </div>
+        <img class="productImage" *ngIf="item.images[0]" [src]="item.images[0]"/>
+        <img class="productImage" *ngIf="!item.images[0]" src="../../../../assets/noImage.jpg"/>
+        </div>
+    
+        <img (click)="delete(item)" style="z-index: 1000;    height: 5vh;margin-left: 25vh; margin-top: -65vh;" *ngIf="isChoose" src="../../../../assets/delete (2).png"/>
+      </div>
+    </div>
+    </div>
+    <h3 *ngIf="productsList[0]==null" style="    text-align: center;
+    color: gray;">אין מוצרים להצגה.</h3>

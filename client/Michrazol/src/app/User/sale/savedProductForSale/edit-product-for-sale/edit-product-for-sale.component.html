@@ -1,0 +1,135 @@
+<body class="w3-container">
+
+
+    <div id="id01" class="w3-modal" style="display:block">
+
+        <div class="w3-modal-content w3-card-8 w3-animate-top " style="max-width:600px">
+            <div class="w3-center w3-light-grey">
+                <br>
+                <h1 class="sign-up__title">
+                    עריכת פרטי מוצר
+                </h1>
+            </div>
+
+            <div class="w3-center">
+                <br>
+                <header class="sign-up__header">
+                    <span class="w3-closebtn w3-hover-red w3-container w3-padding-hor-8 w3-display-topright" (click)="cancle()">&times;</span>
+
+                </header>
+            </div>
+
+            <div class="w3-container">
+                <div class="w3-section">
+
+                    <body>
+
+                        <form (ngSubmit)="saveChanges()">
+
+                            <div class="row">
+                                <select name="category" #c (change)="onSelectCategory(c.value)" value="בחר קטגוריה">
+                                    <option [ngValue]="undefined" hidden selected>{{defaultCategory}}</option>
+                                    <option *ngFor="let item of categoryList" [ngValue]="item.CategoryId" value={{item.CategoryId}}>{{item.CategoryName}}</option>
+                                </select>
+                                <label for="category">קטגוריה</label>
+                            </div>
+                            <div class="row">
+                                <select name="product" [(ngModel)]="EditProductForSale.ProductId" required="required" #product="ngModel">
+                                    <option [ngValue]="undefined" hidden selected>בחר קטגוריה</option>
+                                    <option *ngFor="let item of productList" value={{item.ProductId}}>{{item.ProductName}}</option>
+                                </select>
+                                <label for="product">מוצר</label>
+                            </div>
+                            <div class="row">
+                                <select name="city" [(ngModel)]="EditProductForSale.City" required="required" #city="ngModel">
+                                    <option [ngValue]="undefined" hidden selected>בחר עיר</option>
+                                    <option *ngFor="let item of citiesList" value={{item.CityId}}>{{item.CityName}}</option>
+                                </select>
+                                <label for="city">עיר</label>
+                            </div>
+                            <app-upload-file (uploadEvent)="uploadImg($event)"></app-upload-file>
+                            <div class="row">
+                                <div class="input">
+                                    <div class="input__container">
+                                        <input class="input__field" id="description" required placeholder="תיאור" type="text" [(ngModel)]="EditProductForSale.Description"
+                                            name="description" />
+                                        <label class="input__label" for="description">תיאור</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input">
+                                    <div class="input__container">
+                                        <input class="input__field" id="InitialBid" required type="number" [(ngModel)]="EditProductForSale.InitialBid" name="InitialBid"
+                                        />
+                                        <label class="input__label" for="InitialBid">מחיר התחלתי</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input">
+                                    <label class="switch">
+                                        <input type="checkbox" [(ngModel)]="EditProductForSale.InterestedInMessages" name="messages">
+                                        <div class="slider round"></div>
+                                    </label>
+                                    <label>?מעוניין בקבלת הודעות</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="component component--primary form__button">
+                                    <button class="btn btn--regular" tabindex="1" type="submit">שמירה</button>
+                                </div>
+                            </div>
+                            <div class="form__row sign-up__sign">
+                            </div>
+                        </form>
+                        <!-- <form class="col s12" (ngSubmit)="saveChanges()">
+                    <div class="row">
+                        <select name="category" #c (change)="onSelectCategory(c.value)" value="בחר קטגוריה">
+                            <option [ngValue]="undefined" hidden selected>{{defaultCategory}}</option>
+                            <option *ngFor="let item of categoryList" [ngValue]="item.CategoryId" value={{item.CategoryId}}>{{item.CategoryName}}</option>
+                        </select>
+                        <label for="category">קטגוריה</label>
+                    </div>
+                    <div class="row">
+                        <select name="product" [(ngModel)]="EditProductForSale.ProductId" required="required" #product="ngModel">
+                            <option [ngValue]="undefined" hidden selected>בחר קטגוריה</option>
+                            <option *ngFor="let item of productList" value={{item.ProductId}} >{{item.ProductName}}</option>
+                        </select>
+                        <label for="product">מוצר</label>
+                    </div>
+                    
+                    <div class="alert" *ngIf="!product.valid && product.touched">שם מתכון חובה</div>
+                
+                    <input type="file" accept="image/*" (change)="onImageChangeFromFile($event)">
+                    <img [src]="EditProductForSale.ImageUrl" alt="" />
+                
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" [(ngModel)]="EditProductForSale.Description" name="FirstName">
+                            <label for="FirstName">תיאור</label>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <select name="city" [(ngModel)]="EditProductForSale.City" required="required" #city="ngModel">
+                            <option [ngValue]="undefined" hidden selected>בחר עיר</option>
+                            <option *ngFor="let item of citiesList" value={{item.CityId}} >{{item.CityName}}</option>
+                        </select>
+                        <label for="city">עיר</label>
+                    </div>
+                    <button class="btn waves-effect waves-light teal" type="submit" name="action" (click)="saveChanges()">שמור</button>
+                
+                    <input type="button" value="ביטול" class="btn btn-default" (click)="cancle()"/>
+                </form>   -->
+                    </body>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</body>

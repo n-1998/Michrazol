@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MichrazolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MichrazolEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="MichrazolModel.Categories" />
+    <EntitySet Name="Cities" EntityType="MichrazolModel.Cities" />
+    <EntitySet Name="ProductForSale" EntityType="MichrazolModel.ProductForSale" />
+    <EntitySet Name="Products" EntityType="MichrazolModel.Products" />
+    <EntitySet Name="SuggestedPrices" EntityType="MichrazolModel.SuggestedPrices" />
+    <EntitySet Name="sysdiagrams" EntityType="MichrazolModel.sysdiagrams" />
+    <EntitySet Name="Tender" EntityType="MichrazolModel.Tender" />
+    <EntitySet Name="Users" EntityType="MichrazolModel.Users" />
+    <AssociationSet Name="FK_Products_Kategories" Association="MichrazolModel.FK_Products_Kategories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Cities" Association="MichrazolModel.FK_Tender_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Tender" EntitySet="Tender" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SuggestedPrices_UsersProducts" Association="MichrazolModel.FK_SuggestedPrices_UsersProducts">
+      <End Role="ProductForSale" EntitySet="ProductForSale" />
+      <End Role="SuggestedPrices" EntitySet="SuggestedPrices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Products" Association="MichrazolModel.FK_Tender_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Tender" EntitySet="Tender" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SuggestedPrices_Tender" Association="MichrazolModel.FK_SuggestedPrices_Tender">
+      <End Role="Tender" EntitySet="Tender" />
+      <End Role="SuggestedPrices" EntitySet="SuggestedPrices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Users" Association="MichrazolModel.FK_Tender_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Tender" EntitySet="Tender" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="MichrazolModel.FK_Products_Kategories" FromRole="Categories" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Tender" Relationship="MichrazolModel.FK_Tender_Cities" FromRole="Cities" ToRole="Tender" />
+  </EntityType>
+  <EntityType Name="ProductForSale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="City" Type="Int32" />
+    <Property Name="ImageUrl" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SuggestedPrices" Relationship="MichrazolModel.FK_SuggestedPrices_UsersProducts" FromRole="ProductForSale" ToRole="SuggestedPrices" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="Categories" Relationship="MichrazolModel.FK_Products_Kategories" FromRole="Products" ToRole="Categories" />
+    <NavigationProperty Name="Tender" Relationship="MichrazolModel.FK_Tender_Products" FromRole="Products" ToRole="Tender" />
+  </EntityType>
+  <EntityType Name="SuggestedPrices">
+    <Key>
+      <PropertyRef Name="TenderId" />
+      <PropertyRef Name="UserProductId" />
+    </Key>
+    <Property Name="TenderId" Type="Int32" Nullable="false" />
+    <Property Name="UserProductId" Type="Int32" Nullable="false" />
+    <Property Name="SuggestedPrice" Type="Int32" />
+    <NavigationProperty Name="ProductForSale" Relationship="MichrazolModel.FK_SuggestedPrices_UsersProducts" FromRole="SuggestedPrices" ToRole="ProductForSale" />
+    <NavigationProperty Name="Tender" Relationship="MichrazolModel.FK_SuggestedPrices_Tender" FromRole="SuggestedPrices" ToRole="Tender" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="MaxCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="City" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Cities" Relationship="MichrazolModel.FK_Tender_Cities" FromRole="Tender" ToRole="Cities" />
+    <NavigationProperty Name="Products" Relationship="MichrazolModel.FK_Tender_Products" FromRole="Tender" ToRole="Products" />
+    <NavigationProperty Name="SuggestedPrices" Relationship="MichrazolModel.FK_SuggestedPrices_Tender" FromRole="Tender" ToRole="SuggestedPrices" />
+    <NavigationProperty Name="Users" Relationship="MichrazolModel.FK_Tender_Users" FromRole="Tender" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tz" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Mail" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Tel" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Tender" Relationship="MichrazolModel.FK_Tender_Users" FromRole="Users" ToRole="Tender" />
+  </EntityType>
+  <Association Name="FK_Products_Kategories">
+    <End Type="MichrazolModel.Categories" Role="Categories" Multiplicity="0..1" />
+    <End Type="MichrazolModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Cities">
+    <End Type="MichrazolModel.Cities" Role="Cities" Multiplicity="0..1" />
+    <End Type="MichrazolModel.Tender" Role="Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SuggestedPrices_UsersProducts">
+    <End Type="MichrazolModel.ProductForSale" Role="ProductForSale" Multiplicity="1" />
+    <End Type="MichrazolModel.SuggestedPrices" Role="SuggestedPrices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductForSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SuggestedPrices">
+        <PropertyRef Name="UserProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Products">
+    <End Type="MichrazolModel.Products" Role="Products" Multiplicity="1" />
+    <End Type="MichrazolModel.Tender" Role="Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SuggestedPrices_Tender">
+    <End Type="MichrazolModel.Tender" Role="Tender" Multiplicity="1" />
+    <End Type="MichrazolModel.SuggestedPrices" Role="SuggestedPrices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SuggestedPrices">
+        <PropertyRef Name="TenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Users">
+    <End Type="MichrazolModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="MichrazolModel.Tender" Role="Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

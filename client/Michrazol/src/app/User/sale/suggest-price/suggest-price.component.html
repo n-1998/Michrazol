@@ -1,0 +1,60 @@
+
+<body class="w3-container">
+
+
+  <div id="id01" class="w3-modal" style="display:block">
+    
+    <div class="w3-modal-content w3-card-8 w3-animate-top " style="max-width:600px">
+        <div class="w3-center w3-light-grey"><br>
+          <h1 class="sign-up__title">
+              הצעת מחיר
+            </h1>
+        </div>
+    
+      <div class="w3-center"><br>
+        <header class="sign-up__header">
+            <span class="w3-closebtn w3-hover-red w3-container w3-padding-hor-8 w3-display-topright" (click)="cancle()">&times;</span>
+           
+          </header>
+      </div>
+  
+      <div class="w3-container">
+        <div class="w3-section">
+            <body>
+  
+              <form class="col s12">
+<!-- 
+                 <div class="row">
+                      <div class="input-field col s6">
+                        <label for="FirstName">תאריך שינוי אחרון</label>
+                          <label for="FirstName">{{suggest.LastModifiedDate}}</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s6">
+                        <label for="FirstName">מחיר קודם</label>
+                          <label for="FirstName">{{suggest.SuggestedPrice}}</label>
+                      </div>
+                  </div> -->
+                  <div class="row">
+                      <div class="input-field col s6">
+                        <input type="number" [(ngModel)]="suggest.SuggestedPrice" name="SuggestedPrice"/>
+                          <label for="FirstName">מחיר</label>
+                      </div>
+                  </div>
+              
+                  <button class="btn waves-effect waves-light teal" type="submit" name="action" (click)="save()">שמור</button>
+              
+                  <input type="button" value="ביטול" class="btn btn-default" (click)="cancle()"/>
+              </form>  
+              </body>
+        </div>
+      </div>
+  
+  
+  
+    </div>
+  </div>
+              
+  </body>
+
