@@ -28,7 +28,7 @@
     "datetime-difference": "^1.0.1",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "ng-simple-slideshow": "^1.2.6",
     "ng2-file-upload": "^1.3.0",
     "ng2-google-recaptcha": "^5.0.0",
