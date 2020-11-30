@@ -30,9 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { UserHomeComponent } from './User/user-home/user-home.component';
-import { UserProductForSaleComponent } from './User/Sale/savedProductForSale/user-product-for-sale/user-product-for-sale.component';
+import { UserProductForSaleComponent } from './User/sale/savedProductForSale/user-product-for-sale/user-product-for-sale.component';
 import { ProductForSaleDetailsComponent } from './User/sale/savedProductForSale/product-for-sale-details/product-for-sale-details.component'
-import { EditProductForSaleComponent } from './User/Sale/savedProductForSale/edit-product-for-sale/edit-product-for-sale.component';
+import { EditProductForSaleComponent } from './User/sale/savedProductForSale/edit-product-for-sale/edit-product-for-sale.component';
 import { UserProductForBuyComponent } from './User/Tender/savedTenders/user-product-for-buy/user-product-for-buy.component';
 import { EditTenderDetailsComponent } from './User/Tender/savedTenders/edit-tender-details/edit-tender-details.component'
 import { DatePipe } from '@angular/common';
