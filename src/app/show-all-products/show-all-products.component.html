@@ -1,0 +1,105 @@
+<div class="w3-container city w3-animate-top">
+    <h1 style="margin-top: 24vh;
+        text-align: center;">
+        כל המוצרים למכירה
+    </h1>
+    <nav>
+      <!-- <form class="col s12" (ngSubmit)="addNewTender()" style="display: -webkit-box;"> -->
+        <form class="col s12" style="display: -webkit-box;">
+          <div class="row">
+              <!-- <label class="title" for="category">קטגורית מוצר</label> -->
+              <select name="category" style="    margin: 7vh;" class="input__field"  #c (change)="onSelectCategory(c.value)" value="בחר קטגוריה">
+                    <option [ngValue]="undefined" hidden selected>בחר קטגוריה</option>
+                    <option *ngFor="let item of categoryList" [ngValue]="item.CategoryId" value={{item.CategoryId}}>{{item.CategoryName}}</option>
+                  </select>
+          </div>
+          <div class="row" ngHide="true">
+              <!-- <label class="title"  for="product">מוצר</label> -->
+              <select name="product" style="    margin: 7vh;" class="input__field"  #p (change)="onSelectProduct(p.value)" value="בחר מוצר">
+                    <option [ngValue]="undefined" hidden selected>בחר מוצר</option>
+                    <option *ngFor="let item of productList" [ngValue]="item.ProductId" value={{item.CategoryId}}>{{item.ProductName}}</option>
+                  </select>
+              <!-- <p-dropdown [options]="productList" name="product" #p (onChange)="onSelectProduct(p.value)" [(ngModel)]="selectedProduct" [ngValue]="ProductId"
+                  [filter]="true" optionLabel="ProductName"></p-dropdown> -->
+          </div>
+          <div class="row">
+              <!-- <label class="title"  for="areas">אזור</label> -->
+              <select name="areas" style="    margin: 7vh;" class="input__field"  #a (change)="onSelectArea(a.value)" value="בחר איזור">
+                    <option [ngValue]="undefined" hidden selected>בחר איזור</option>
+                    <option *ngFor="let item of AreasList" [ngValue]="item.selectedArea" value={{item.AreaId}}>{{item.AreaName}}</option>
+                  </select>
+              <!-- <p-dropdown [options]="AreasList" name="areas" #a [(ngModel)]="selectedArea" (onChange)="onSelectArea(a.value)" [ngValue]="AreaId" [filter]="true"
+                  optionLabel="AreaName"></p-dropdown> -->
+          </div>
+          <div class="row">
+              <!-- <label class="title"  for="city">עיר</label> -->
+              <select name="city" style="    margin: 7vh;" class="input__field"  #city (change)="onSelectCity(city.value)" value="בחר עיר">
+                    <option [ngValue]="undefined" hidden selected>בחר עיר</option>
+                    <option *ngFor="let item of citiesList" [ngValue]="item.CityId" value={{item.CityId}}>{{item.CityName}}</option>
+                  </select>
+              <!-- <p-dropdown [options]="citiesList" name="city" #city [(ngModel)]="selectedCity" (onChange)="onSelectCity(city.value)" [ngValue]="CityId"
+                  [filter]="true" optionLabel="CityName"></p-dropdown> -->
+          </div>
+          <!-- <div class="row">
+              <label for="MaxCost">מחיר מקסימלי</label>
+              <div class="input-field col s6">
+                  <input type="number" [(ngModel)]="MaxCost" name="MaxCost" (keyup)="onMaxCostChange()"/>
+              </div>
+          </div> -->
+          <div class="row" style="    margin: 7vh;">
+            
+              <div class="input-field col s6">
+                  <input type="checkbox" value="חדש?" dir="rtl" style="float: right;" name="isNew" (click)="onChangeIsNew()">
+              </div>
+              <label class="title" for="isNew">חדש?</label>
+          </div>
+      </form>
+    </nav>
+    <div class="row">
+    <div>
+    <table class='table table-striped myTable' *ngIf="productForSlaeList" >
+        <thead>
+            <tr>
+                <th>מוצר</th>
+                <th>תיאור</th>
+                 <th>מצב המוצר</th>
+                <th>עיר</th>
+                <th>איזור</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of productForSlaeList" >
+                <div *ngFor="let p of products">
+                    <td *ngIf="p.ProductId==item.ProductId">
+                        {{p.ProductName}}
+                    </td>
+                </div>
+                <td>{{item.Description}}</td>
+                <td *ngIf="item.IsNew==true">
+                    חדש
+                </td>
+                <td *ngIf="item.IsNew==false">
+                    ישן
+                </td>
+                <div *ngFor="let c of cities">
+                    <td *ngIf="c.CityId==item.City">
+                        {{c.CityName}}
+                    </td>
+                </div>
+                <td></td>
+                <div *ngFor="let c of cities">
+                    <td *ngIf="c.CityId==item.City">
+                        {{c.AreaId}}
+                    </td>
+                </div>
+                <td>
+                    <!-- <button title="ערוך " class="btn btn-info"  ">ערוך</button> -->
+                    <button  class="btn btn-secondary" (click)="viewProductDetails(item)">לפרטים נוספים לחץ כאן</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
