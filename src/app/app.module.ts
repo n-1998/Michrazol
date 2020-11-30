@@ -20,16 +20,16 @@ import { NgForm, Validator, ValidationErrors, Validators } from '@angular/forms'
 import { HttpModule, Http } from '@angular/http';
 import { NgModel } from '@angular/forms';
 import { RegisterComponent } from './Enter/register/register.component';
-import { AddProductComponent } from './user/sale/add-product/add-product.component';
-import { SuggestPriceComponent } from './user/sale/suggest-price/suggest-price.component';
-import { OpenTenderComponent } from './user/Tender/open-tender/open-tender.component';
-import { SuggestionPriceDitailsComponent } from './user/Tender/suggestion-price-ditails/suggestion-price-ditails.component';
+import { AddProductComponent } from './User/sale/add-product/add-product.component';
+import { SuggestPriceComponent } from './User/sale/suggest-price/suggest-price.component';
+import { OpenTenderComponent } from './User/Tender/open-tender/open-tender.component';
+import { SuggestionPriceDitailsComponent } from './User/Tender/suggestion-price-ditails/suggestion-price-ditails.component';
 import "rxjs";
 import 'rxjs/Rx';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { UserHomeComponent } from './user/user-home/user-home.component';
+import { UserHomeComponent } from './User/user-home/user-home.component';
 import { UserProductForSaleComponent } from './User/Sale/savedProductForSale/user-product-for-sale/user-product-for-sale.component';
 import { ProductForSaleDetailsComponent } from './User/sale/savedProductForSale/product-for-sale-details/product-for-sale-details.component'
 import { EditProductForSaleComponent } from './User/Sale/savedProductForSale/edit-product-for-sale/edit-product-for-sale.component';
